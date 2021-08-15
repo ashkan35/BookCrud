@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Application.Contracts;
 using Application.Contracts.Identity;
+using Application.Contracts.Services;
 using Application.Models.Common;
 using MediatR;
 
@@ -11,11 +12,13 @@ namespace Application.Features.Users.Queries.TokenRequest
    {
        private readonly IAppUserManager _userManager;
        private readonly IMediator _mediator;
+       private readonly ISmsService _smsService;
 
-       public UserTokenRequestQueryHandler(IAppUserManager userManager, IMediator mediator)
+       public UserTokenRequestQueryHandler(IAppUserManager userManager, IMediator mediator,ISmsService smsService)
        {
            _userManager = userManager;
            _mediator = mediator;
+           _smsService = smsService;
        }
 
 
@@ -26,9 +29,9 @@ namespace Application.Features.Users.Queries.TokenRequest
             if(user is null)
                 return OperationResult<UserTokenRequestQueryResult>.NotFoundResult("کاربر یافت نشد");
 
-            var code = await _userManager.GenerateOtpCode(user);
+            var code = await _userManager.GeneratePhoneNumberToken(user, user.PhoneNumber);
 
-            //TODO Send Code Via Sms Provider
+            await _smsService.SendVerificationCode(user.PhoneNumber, code);
 
             return OperationResult<UserTokenRequestQueryResult>.SuccessResult(new UserTokenRequestQueryResult{UserKey = user.GeneratedCode});
         }

@@ -32,6 +32,14 @@ namespace Identity.Identity.SeedDatabaseService
                 };
                await _roleManager.CreateAsync(role);
             }
+            if (!_roleManager.Roles.AsNoTracking().Any(r => r.Name.Equals("verifiedUser")))
+            {
+                var role = new Role
+                {
+                    Name = "verifiedUser",
+                };
+                await _roleManager.CreateAsync(role);
+            }
 
             if (!_userManager.Users.AsNoTracking().Any(u => u.UserName.Equals("admin")))
             {

@@ -1,13 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Application.Features.BookFeatures.BookMainFeatures.Commands;
+using Application.Features.BookFeatures.BookMainFeatures.Commands.Create;
+using Application.Features.BookFeatures.BookMainFeatures.Commands.Delete;
+using Application.Features.BookFeatures.BookMainFeatures.Commands.Publish_Unpublish;
+using Application.Features.BookFeatures.BookMainFeatures.Commands.Update;
+using Application.Features.BookFeatures.BookMainFeatures.Queries;
 using Application.Models.ApiResult;
 using Application.Models.BookDtos;
 using AutoMapper;
-using Identity.Identity.PermissionManager;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Web.Api.ViewModels;
@@ -19,6 +23,7 @@ namespace Web.Api.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/BooksAdmin")]
     //[Authorize(policy: nameof(ConstantPolicies.DynamicPermission))]
+    [Authorize(Roles = "admin")]
     public class BooksAdminController : BaseController
     {
         private readonly IMediator _mediator;
@@ -49,10 +54,38 @@ namespace Web.Api.Controllers
             var result = await _mediator.Send(requestModel);
             return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
         }
-        [HttpGet("[action]")]
-        public IActionResult GetAllBooks()
+        [HttpDelete("[action]")]
+ 
+        public async Task<IActionResult> DeleteBook(Guid bookId)
         {
-            return Ok();
+            var requestModel = new BookDeleteCommand {BookId = bookId};
+            var result = await _mediator.Send(requestModel);
+            return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
+        }
+        [HttpPatch("[action]")]
+
+        public async Task<IActionResult> PublishBook(Guid bookId)
+        {
+            var requestModel = new BookPublishCommand() { BookId = bookId };
+            var result = await _mediator.Send(requestModel);
+            return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
+        }
+        [HttpPatch("[action]")]
+
+        public async Task<IActionResult> UnPublishBook(Guid bookId)
+        {
+            var requestModel = new BookUnPublishCommand() { BookId = bookId };
+            var result = await _mediator.Send(requestModel);
+            return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
+        }
+        [HttpGet("[action]")]
+        [ProducesResponseType(typeof(ApiResult<List<BookDto>>), 200)]
+        public async Task<IActionResult> GetAllBooks()
+        {
+            var model = new BookGetAllQuery();
+            var result =await _mediator.Send(model);
+            return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
+
         }
     }
 }

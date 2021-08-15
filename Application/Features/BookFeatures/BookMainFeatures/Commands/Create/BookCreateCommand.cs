@@ -3,13 +3,14 @@ using Application.Models.BookDtos;
 using Application.Models.Common;
 using Application.Profiles;
 using Domain.Entities.BookEntities;
+using FluentValidation;
 using MediatR;
 
-namespace Application.Features.BookFeatures.BookMainFeatures.Commands
+namespace Application.Features.BookFeatures.BookMainFeatures.Commands.Create
 {
-    public class BookUpdateCommand:IRequest<OperationResult<BookDto>>,ICreateMapper<Book>
+    public class BookCreateCommand:IRequest<OperationResult<BookDto>>,ICreateMapper<Book>
     {
-        public Guid Id { get; set; }
+        /// <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
         public string Name { get; set; }
         /// <example>436</example>
         public int NumberOfPages { get; set; }
@@ -17,7 +18,7 @@ namespace Application.Features.BookFeatures.BookMainFeatures.Commands
         public string ShabekId { get; set; }
         ///<summary>نوبت چاپ</summary>
         /// <example>5</example>
-        public string PublishOrderNumber { get; set; }
+        public string PublishOrder { get; set; }
         /// <summary>تاریخ چاپ</summary>
         /// <example>2020-12-12</example>
         public DateTime DateOfPublish { get; set; }
@@ -29,5 +30,14 @@ namespace Application.Features.BookFeatures.BookMainFeatures.Commands
         /// آیدی کاربری که این کتاب را اضافه کرده است
         /// </summary>
         public int UserCreatedId { get; set; } = 1;
+    }
+
+    public class BookCreateCommandValidator : AbstractValidator<BookCreateCommand>
+    {
+        public BookCreateCommandValidator()
+        {
+            RuleFor(x => x.Name).NotNull().Length(2, 100);
+            RuleFor(x => x.NumberOfPages).InclusiveBetween(5, 500);
+        }
     }
 }

@@ -32,6 +32,11 @@ namespace Identity.UserManager
             return _userManager.Users.AnyAsync(c => c.PhoneNumber == phoneNumber);
         }
 
+        public Task<IdentityResult> CreateUserWithPassword(User user, string password)
+        {
+            return _userManager.CreateAsync(user, password);
+        }
+
         public Task<bool> IsExistUserName(string userName)
         {
             return _userManager.Users.AnyAsync(c => c.UserName.Equals(userName));
@@ -67,6 +72,11 @@ namespace Identity.UserManager
         public Task<User> GetUserByPhoneNumber(string phoneNumber)
         {
             return _userManager.Users.FirstOrDefaultAsync(c => c.PhoneNumber.Equals(phoneNumber));
+        }
+
+        public Task<IdentityResult> AddToRoleAsync(User user, string role)
+        {
+            return _userManager.AddToRoleAsync(user, role);
         }
 
         public Task<SignInResult> AdminLogin(User user, string password)

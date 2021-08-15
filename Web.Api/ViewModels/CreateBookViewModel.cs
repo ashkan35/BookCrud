@@ -1,5 +1,6 @@
 ﻿using System;
 using Application.Features.BookFeatures.BookMainFeatures.Commands;
+using Application.Features.BookFeatures.BookMainFeatures.Commands.Create;
 using Application.Profiles;
 using FluentValidation;
 
@@ -15,7 +16,7 @@ namespace Web.Api.ViewModels
         public string ShabekId { get; set; }
         ///<summary>نوبت چاپ</summary>
         /// <example>5</example>
-        public string PublishOrderNumber { get; set; }
+        public string PublishOrder { get; set; }
         /// <summary>تاریخ چاپ</summary>
         /// <example>2020-12-12</example>
         public DateTime DateOfPublish { get; set; }
@@ -32,6 +33,8 @@ namespace Web.Api.ViewModels
         {
              RuleFor(x => x.Name).NotNull().Length(2, 100);
             RuleFor(x => x.NumberOfPages).InclusiveBetween(5, 500);
+            RuleFor(x => x.NumberOfPages).InclusiveBetween(5, 500);
+            RuleFor(x=>x.DateOfPublish).LessThan(DateTime.Now).WithMessage("تاریخ انتشار نمیتواند بیشتر از تاریخ امروز باشد");
         }
     }
 }

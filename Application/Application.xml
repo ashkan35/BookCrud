@@ -4,51 +4,90 @@
         <name>Application</name>
     </assembly>
     <members>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.Name">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.Name">
             <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.NumberOfPages">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.NumberOfPages">
             <example>436</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.ShabekId">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.ShabekId">
             <example>ass123-125-262657RT</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.PublishOrderNumber">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.PublishOrder">
             <summary>نوبت چاپ</summary>
              <example>5</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.DateOfPublish">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.DateOfPublish">
             <summary>تاریخ چاپ</summary>
             <example>2020-12-12</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.PublisherName">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.PublisherName">
             <summary>نام منتشر کننده</summary>
             <example>انتشارات پالیز</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.UserCreatedId">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Create.BookCreateCommand.UserCreatedId">
             <summary>
             آیدی کاربری که این کتاب را اضافه کرده است
             </summary>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookUpdateCommand.NumberOfPages">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Update.BookUpdateCommand.NumberOfPages">
             <example>436</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookUpdateCommand.ShabekId">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Update.BookUpdateCommand.ShabekId">
             <example>ass123-125-262657RT</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookUpdateCommand.PublishOrderNumber">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Update.BookUpdateCommand.PublishOrder">
             <summary>نوبت چاپ</summary>
              <example>5</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookUpdateCommand.DateOfPublish">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Update.BookUpdateCommand.DateOfPublish">
             <summary>تاریخ چاپ</summary>
             <example>2020-12-12</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookUpdateCommand.PublisherName">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Update.BookUpdateCommand.PublisherName">
             <summary>نام منتشر کننده</summary>
             <example>انتشارات پالیز</example>
         </member>
-        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookUpdateCommand.UserCreatedId">
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.Update.BookUpdateCommand.UserCreatedId">
+            <summary>
+            آیدی کاربری که این کتاب را اضافه کرده است
+            </summary>
+        </member>
+        <member name="P:Application.Features.Users.Commands.Create.UserCreateCommand.UserName">
+            <summary>کد ملی</summary>
+             <example>Ali354</example>
+        </member>
+        <member name="P:Application.Features.Users.Commands.Create.UserCreateCommand.FirstName">
+            <example>علی</example>
+        </member>
+        <member name="P:Application.Features.Users.Commands.Create.UserCreateCommand.LastName">
+            <example>علی زاده</example>
+        </member>
+        <member name="P:Application.Features.Users.Commands.Create.UserCreateCommand.PhoneNumber">
+            <example>09121111111</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.Name">
+            <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.NumberOfPages">
+            <example>436</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.ShabekId">
+            <example>ass123-125-262657RT</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.PublishOrder">
+            <summary>نوبت چاپ</summary>
+             <example>5</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.DateOfPublish">
+            <summary>تاریخ چاپ</summary>
+            <example>2020-12-12</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.PublisherName">
+            <summary>نام منتشر کننده</summary>
+            <example>انتشارات پالیز</example>
+        </member>
+        <member name="P:Application.Models.BookDtos.BookDto.UserCreatedId">
             <summary>
             آیدی کاربری که این کتاب را اضافه کرده است
             </summary>

@@ -7,7 +7,7 @@ using Application.Models.Common;
 using AutoMapper;
 using MediatR;
 
-namespace Application.Features.BookFeatures.BookMainFeatures.Commands
+namespace Application.Features.BookFeatures.BookMainFeatures.Commands.Update
 {
     public class BookUpdateHandler:IRequestHandler<BookUpdateCommand,OperationResult<BookDto>>
     {

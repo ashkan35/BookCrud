@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Contracts.Services;
 using Application.Features.BookFeatures.BookMainFeatures.Commands;
+using Application.Features.BookFeatures.BookMainFeatures.Commands.Create;
 using Application.Features.Users.Commands.Create;
 using Application.ServiceConfiguration;
 using Domain.Entities.BookEntities;
@@ -18,6 +20,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Identity.Identity.Dtos;
 using Identity.ServiceConfiguration;
+using InfrastructureServices.Services;
 using Persistence.ServiceConfiguration;
 using Web.Api.ViewModels;
 using WebFramework.Filters;
@@ -54,6 +57,8 @@ namespace Web.Api
             //.AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<UserCreateCommand>(); });
             services.AddTransient<IValidator<CreateBookViewModel>, CreateBookViewModelValidator>();
             services.AddTransient<IValidator<BookCreateCommand>, BookCreateCommandValidator>();
+            services.AddTransient<IValidator<UserCreateCommand>, UserCreateCommandValidator>();
+            services.AddScoped<ISmsService, SmsService>();
             services.AddSwagger();
             
             services.AddApplicationServices().RegisterIdentityServices(_identitySettings)

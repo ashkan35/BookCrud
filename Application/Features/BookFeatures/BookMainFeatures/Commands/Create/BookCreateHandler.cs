@@ -8,7 +8,7 @@ using AutoMapper;
 using Domain.Entities.BookEntities;
 using MediatR;
 
-namespace Application.Features.BookFeatures.BookMainFeatures.Commands
+namespace Application.Features.BookFeatures.BookMainFeatures.Commands.Create
 {
     public class BookCreateHandler:IRequestHandler<BookCreateCommand,OperationResult<BookDto>>
     {

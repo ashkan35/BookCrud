@@ -9,13 +9,13 @@ namespace Domain.Entities.BookEntities
         public string Name { get; set; }
         public int NumberOfPages { get; set; }
         public string ShabekId { get; set; }
-        public string PublishOrderNumber { get; set; }
+        public string PublishOrder { get; set; }
         public DateTime DateOfPublish  { get; set; }
         //Its better to have an Entity and CRUD for publishers!
         public string PublisherName { get; set; }
-        public bool IsPublished { get; set; }
+        public bool IsPublished { get; set; } = false;
 
-        #region  Relations
+        #region  Navigation Properties
 
         public User.User User { get; set; }
         public int UserCreatedId { get; set; }

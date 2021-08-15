@@ -33,6 +33,7 @@ namespace Application.Features.Users.Commands.ConfirmPhoneNumber
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "verifiedUser");
                 var token = await _jwtService.GenerateAsync(user);
                 return OperationResult<AccessToken>.SuccessResult(token);
             }
