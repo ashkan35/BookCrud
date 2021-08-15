@@ -26,8 +26,10 @@ namespace WebFramework.Swagger
             services.AddSwaggerGen(options =>
             {
                 var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "Project.xml");
+                var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, "Application.xml");
                 //show controller XML comments like summary
                 options.IncludeXmlComments(xmlDocPath, true);
+                options.IncludeXmlComments(applicationXmlPath, true);
 
                 options.EnableAnnotations();
 

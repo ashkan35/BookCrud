@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210815105843_mig_bookUserId")]
+    partial class mig_bookUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,8 +58,6 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserCreatedId");
 
                     b.ToTable("Books");
                 });
@@ -336,17 +336,6 @@ namespace Persistence.Migrations
                     b.ToTable("UserTokens", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.BookEntities.Book", b =>
-                {
-                    b.HasOne("Domain.Entities.User.User", "User")
-                        .WithMany("Books")
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Domain.Entities.User.RoleClaim", b =>
                 {
                     b.HasOne("Domain.Entities.User.Role", "Role")
@@ -430,8 +419,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.User.User", b =>
                 {
-                    b.Navigation("Books");
-
                     b.Navigation("Claims");
 
                     b.Navigation("Logins");

@@ -9,7 +9,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\AuthorEntities\" />
-  </ItemGroup>
 </Project>

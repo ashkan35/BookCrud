@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Contracts.BookContracts;
 using Application.Contracts.Persistence;
+using Persistence.Repositories.BookRepo;
 
 namespace Persistence.Repositories
 {
@@ -11,11 +13,12 @@ namespace Persistence.Repositories
         private readonly ApplicationDbContext _db;
        
         public IUserRefreshTokenRepository UserRefreshTokenRepository { get; }
-
+        public IBookRepository BookRepository { get; }
         public UnitOfWork(ApplicationDbContext db)
        {
            _db = db;
            UserRefreshTokenRepository = new UserRefreshTokenRepository(_db);
+           BookRepository = new BookRepository(_db);
        }
 
         public  Task CommitAsync()

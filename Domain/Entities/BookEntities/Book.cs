@@ -15,12 +15,12 @@ namespace Domain.Entities.BookEntities
         public string PublisherName { get; set; }
         public bool IsPublished { get; set; }
 
-        #region MyRegion
+        #region  Relations
 
-        public ICollection<BookAuthor> BookAuthors { get; set; }
- 
-
+        public User.User User { get; set; }
+        public int UserCreatedId { get; set; }
         #endregion
+
 
     }
 }

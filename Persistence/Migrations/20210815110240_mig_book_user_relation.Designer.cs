@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210327210004_Init")]
-    partial class Init
+    [Migration("20210815110240_mig_book_user_relation")]
+    partial class mig_book_user_relation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,70 @@ namespace Persistence.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("Domain.Entities.BookEntities.Book", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfPublish")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfPages")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublishOrderNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PublisherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShabekId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserCreatedId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserCreatedId");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Order.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
 
             modelBuilder.Entity("Domain.Entities.User.Role", b =>
                 {
@@ -274,6 +338,17 @@ namespace Persistence.Migrations
                     b.ToTable("UserTokens", "usr");
                 });
 
+            modelBuilder.Entity("Domain.Entities.BookEntities.Book", b =>
+                {
+                    b.HasOne("Domain.Entities.User.User", "User")
+                        .WithMany("Books")
+                        .HasForeignKey("UserCreatedId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Entities.User.RoleClaim", b =>
                 {
                     b.HasOne("Domain.Entities.User.Role", "Role")
@@ -357,6 +432,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.User.User", b =>
                 {
+                    b.Navigation("Books");
+
                     b.Navigation("Claims");
 
                     b.Navigation("Logins");

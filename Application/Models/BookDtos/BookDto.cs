@@ -1,16 +1,21 @@
 ﻿using System;
+using Application.Profiles;
+using Domain.Entities.BookEntities;
 using FluentValidation;
 
 namespace Application.Models.BookDtos
 {
-    public class BookDto
+    public class BookDto:ICreateMapper<Book>
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public int NumberOfPages { get; set; }
         public string ShabekId { get; set; }
         public string PublishOrderNumber { get; set; }
         public DateTime DateOfPublish { get; set; }
         public string PublisherName { get; set; }
+        public int UserCreatedId { get; set; }
+
     }
 
     public class BookDtoValidator : AbstractValidator<BookDto>

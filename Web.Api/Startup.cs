@@ -10,11 +10,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.BookFeatures.BookMainFeatures.Commands;
 using Application.Features.Users.Commands.Create;
 using Application.ServiceConfiguration;
+using Domain.Entities.BookEntities;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Identity.Identity.Dtos;
 using Identity.ServiceConfiguration;
 using Persistence.ServiceConfiguration;
+using Web.Api.ViewModels;
 using WebFramework.Filters;
 using WebFramework.ServiceConfiguration;
 using WebFramework.Swagger;
@@ -45,9 +50,10 @@ namespace Web.Api
                 options.Filters.Add(typeof(ModelStateValidationAttribute));
                 options.Filters.Add(typeof(BadRequestResultFilterAttribute));
 
-            }).ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; });
-                //.AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<UserCreateCommand>(); });
-
+            }).ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; }).AddFluentValidation();
+            //.AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<UserCreateCommand>(); });
+            services.AddTransient<IValidator<CreateBookViewModel>, CreateBookViewModelValidator>();
+            services.AddTransient<IValidator<BookCreateCommand>, BookCreateCommandValidator>();
             services.AddSwagger();
             
             services.AddApplicationServices().RegisterIdentityServices(_identitySettings)

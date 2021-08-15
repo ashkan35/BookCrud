@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Application</name>
+    </assembly>
+    <members>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.Name">
+            <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
+        </member>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.NumberOfPages">
+            <example>436</example>
+        </member>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.ShabekId">
+            <example>ass123-125-262657RT</example>
+        </member>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.PublishOrderNumber">
+            <summary>نوبت چاپ</summary>
+             <example>5</example>
+        </member>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.DateOfPublish">
+            <summary>تاریخ چاپ</summary>
+            <example>2020-12-12</example>
+        </member>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.PublisherName">
+            <summary>نام منتشر کننده</summary>
+            <example>انتشارات پالیز</example>
+        </member>
+        <member name="P:Application.Features.BookFeatures.BookMainFeatures.Commands.BookCreateCommand.UserCreatedId">
+            <summary>
+            آیدی کاربری که این کتاب را اضافه کرده است
+            </summary>
+        </member>
+    </members>
+</doc>

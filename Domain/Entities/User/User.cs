@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Common;
+using Domain.Entities.BookEntities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities.User
@@ -24,7 +25,7 @@ namespace Domain.Entities.User
 
         #region Navigation Properties
 
-
+        public ICollection<Book> Books { get; set; }
         #endregion
 
     }

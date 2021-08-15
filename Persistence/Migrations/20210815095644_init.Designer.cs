@@ -3,21 +3,44 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210815095644_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("Domain.Entities.AuthorEntities.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
 
             modelBuilder.Entity("Domain.Entities.BookEntities.Book", b =>
                 {
@@ -52,14 +75,29 @@ namespace Persistence.Migrations
                     b.Property<string>("ShabekId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserCreatedId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserCreatedId");
-
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BookEntities.BookAuthor", b =>
+                {
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("AuthorId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuthorId", "BookId");
+
+                    b.HasIndex("AuthorId1");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookAuthors");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order.Order", b =>
@@ -336,15 +374,21 @@ namespace Persistence.Migrations
                     b.ToTable("UserTokens", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.BookEntities.Book", b =>
+            modelBuilder.Entity("Domain.Entities.BookEntities.BookAuthor", b =>
                 {
-                    b.HasOne("Domain.Entities.User.User", "User")
-                        .WithMany("Books")
-                        .HasForeignKey("UserCreatedId")
+                    b.HasOne("Domain.Entities.AuthorEntities.Author", "Author")
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("AuthorId1");
+
+                    b.HasOne("Domain.Entities.BookEntities.Book", "Book")
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Author");
+
+                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("Domain.Entities.User.RoleClaim", b =>
@@ -421,6 +465,16 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AuthorEntities.Author", b =>
+                {
+                    b.Navigation("BookAuthors");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BookEntities.Book", b =>
+                {
+                    b.Navigation("BookAuthors");
+                });
+
             modelBuilder.Entity("Domain.Entities.User.Role", b =>
                 {
                     b.Navigation("Claims");
@@ -430,8 +484,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.User.User", b =>
                 {
-                    b.Navigation("Books");
-
                     b.Navigation("Claims");
 
                     b.Navigation("Logins");

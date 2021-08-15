@@ -4,5 +4,31 @@
         <name>Web.Api</name>
     </assembly>
     <members>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.Name">
+            <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.NumberOfPages">
+            <example>436</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.ShabekId">
+            <example>ass123-125-262657RT</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.PublishOrderNumber">
+            <summary>نوبت چاپ</summary>
+             <example>5</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.DateOfPublish">
+            <summary>تاریخ چاپ</summary>
+            <example>2020-12-12</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.PublisherName">
+            <summary>نام منتشر کننده</summary>
+            <example>انتشارات پالیز</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.CreateBookViewModel.UserCreatedId">
+            <summary>
+            آیدی کاربری که این کتاب را اضافه کرده است
+            </summary>
+        </member>
     </members>
 </doc>
