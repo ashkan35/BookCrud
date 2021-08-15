@@ -1,5 +1,8 @@
-﻿using Application.Contracts.BookContracts;
+﻿using System;
+using System.Threading.Tasks;
+using Application.Contracts.BookContracts;
 using Domain.Entities.BookEntities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories.BookRepo
 {
@@ -7,6 +10,11 @@ namespace Persistence.Repositories.BookRepo
     {
         public BookRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public  Task<Book> GetBookByIdAsync(Guid bookId)
+        {
+            return   Entities.SingleOrDefaultAsync(x => x.Id == bookId);
         }
     }
 }

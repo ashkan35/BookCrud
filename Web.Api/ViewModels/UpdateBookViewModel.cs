@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Application.Features.BookFeatures.BookMainFeatures.Commands;
 using Application.Profiles;
 using FluentValidation;
 
 namespace Web.Api.ViewModels
 {
-    public class CreateBookViewModel: ICreateMapper<BookCreateCommand>
+    public class UpdateBookViewModel:ICreateMapper<BookUpdateCommand>
     {
-        /// <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
+        public Guid Id { get; set; }
         public string Name { get; set; }
         /// <example>436</example>
         public int NumberOfPages { get; set; }
@@ -23,14 +26,14 @@ namespace Web.Api.ViewModels
         /// <example>انتشارات پالیز</example>
         public string PublisherName { get; set; }
 
-       
+        
     }
-
-    public class CreateBookViewModelValidator : AbstractValidator<CreateBookViewModel>
+    public class UpdateBookViewModelValidator : AbstractValidator<UpdateBookViewModel>
     {
-        public CreateBookViewModelValidator()
+        public UpdateBookViewModelValidator()
         {
-             RuleFor(x => x.Name).NotNull().Length(2, 100);
+            RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.Name).NotNull().Length(2, 100);
             RuleFor(x => x.NumberOfPages).InclusiveBetween(5, 500);
         }
     }

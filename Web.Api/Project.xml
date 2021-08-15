@@ -25,10 +25,23 @@
             <summary>نام منتشر کننده</summary>
             <example>انتشارات پالیز</example>
         </member>
-        <member name="P:Web.Api.ViewModels.CreateBookViewModel.UserCreatedId">
-            <summary>
-            آیدی کاربری که این کتاب را اضافه کرده است
-            </summary>
+        <member name="P:Web.Api.ViewModels.UpdateBookViewModel.NumberOfPages">
+            <example>436</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.UpdateBookViewModel.ShabekId">
+            <example>ass123-125-262657RT</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.UpdateBookViewModel.PublishOrderNumber">
+            <summary>نوبت چاپ</summary>
+             <example>5</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.UpdateBookViewModel.DateOfPublish">
+            <summary>تاریخ چاپ</summary>
+            <example>2020-12-12</example>
+        </member>
+        <member name="P:Web.Api.ViewModels.UpdateBookViewModel.PublisherName">
+            <summary>نام منتشر کننده</summary>
+            <example>انتشارات پالیز</example>
         </member>
     </members>
 </doc>

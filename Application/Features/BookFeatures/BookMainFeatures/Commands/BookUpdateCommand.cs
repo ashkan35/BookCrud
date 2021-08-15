@@ -1,13 +1,15 @@
 ﻿using System;
-using Application.Features.BookFeatures.BookMainFeatures.Commands;
+using Application.Models.BookDtos;
+using Application.Models.Common;
 using Application.Profiles;
-using FluentValidation;
+using Domain.Entities.BookEntities;
+using MediatR;
 
-namespace Web.Api.ViewModels
+namespace Application.Features.BookFeatures.BookMainFeatures.Commands
 {
-    public class CreateBookViewModel: ICreateMapper<BookCreateCommand>
+    public class BookUpdateCommand:IRequest<OperationResult<BookDto>>,ICreateMapper<Book>
     {
-        /// <example>کد نویسی تمیز با جعفر نژاد قمی!</example>
+        public Guid Id { get; set; }
         public string Name { get; set; }
         /// <example>436</example>
         public int NumberOfPages { get; set; }
@@ -23,15 +25,9 @@ namespace Web.Api.ViewModels
         /// <example>انتشارات پالیز</example>
         public string PublisherName { get; set; }
 
-       
-    }
-
-    public class CreateBookViewModelValidator : AbstractValidator<CreateBookViewModel>
-    {
-        public CreateBookViewModelValidator()
-        {
-             RuleFor(x => x.Name).NotNull().Length(2, 100);
-            RuleFor(x => x.NumberOfPages).InclusiveBetween(5, 500);
-        }
+        /// <summary>
+        /// آیدی کاربری که این کتاب را اضافه کرده است
+        /// </summary>
+        public int UserCreatedId { get; set; } = 1;
     }
 }

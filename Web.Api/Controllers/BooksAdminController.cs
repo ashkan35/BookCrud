@@ -39,6 +39,16 @@ namespace Web.Api.Controllers
             var result = await _mediator.Send(requestModel);
             return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
         }
+        [HttpPut("[action]")]
+        [ProducesResponseType(typeof(ApiResult<BookDto>), 200)]
+        public async Task<IActionResult> UpdateBook(UpdateBookViewModel model)
+        {
+            var requestModel = _mapper.Map<BookUpdateCommand>(model);
+            //TODO:Get user id from claim
+            requestModel.UserCreatedId = 1;
+            var result = await _mediator.Send(requestModel);
+            return result.IsSuccess ? OperationResult(result) : NotFound(result.ErrorMessage);
+        }
         [HttpGet("[action]")]
         public IActionResult GetAllBooks()
         {
