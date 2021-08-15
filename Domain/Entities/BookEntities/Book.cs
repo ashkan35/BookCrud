@@ -13,6 +13,7 @@ namespace Domain.Entities.BookEntities
         public DateTime DateOfPublish  { get; set; }
         //Its better to have an Entity and CRUD for publishers!
         public string PublisherName { get; set; }
+        public bool IsPublished { get; set; }
 
         #region MyRegion
 
