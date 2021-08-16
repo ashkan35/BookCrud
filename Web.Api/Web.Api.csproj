@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <NoWin32Manifest>true</NoWin32Manifest>
     <Nullable>warnings</Nullable>
+    <UserSecretsId>87045d28-6961-4900-9046-6859f0a331fd</UserSecretsId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>Project.xml</DocumentationFile>

@@ -29,6 +29,8 @@ namespace Application.Models.BookDtos
         /// </summary>
         public int UserCreatedId { get; set; }
 
+        public bool IsPublished { get; set; }
+
     }
 
     public class BookDtoValidator : AbstractValidator<BookDto>
